@@ -4,16 +4,16 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
-#include "Gun_RubyPistol.generated.h"
+#include "PlayerCharacter.generated.h"
 
 UCLASS()
-class TRENCHCOATSGAME_API AGun_RubyPistol : public APawn
+class TRENCHCOATSGAME_API APlayerCharacter : public APawn
 {
 	GENERATED_BODY()
 
 public:
 	// Sets default values for this pawn's properties
-	AGun_RubyPistol();
+	APlayerCharacter();
 
 protected:
 	// Called when the game starts or when spawned
@@ -26,13 +26,6 @@ public:
 	// Called to bind functionality to input
 	//virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	UFUNCTION()
-		void Fire();
-
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		bool pickedUp;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		int ammoClip;
+	
 	
 };

@@ -27,14 +27,14 @@ void AGun_RubyPistol::Tick(float DeltaTime)
 }
 
 // Called to bind functionality to input
-void AGun_RubyPistol::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
-{
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
-	
-	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &AGun_RubyPistol::Fire);
-	
-}
+//void AGun_RubyPistol::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+//{
+//	Super::SetupPlayerInputComponent(PlayerInputComponent);
+//
+//	
+//	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &AGun_RubyPistol::Fire);
+//	
+//}
 
 
 void AGun_RubyPistol::Fire() {

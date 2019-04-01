@@ -3,8 +3,12 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "PlayerPawn.h"
+#include "EnemyTest.h"
 #include "GameFramework/Actor.h"
 #include "RubyPistol.generated.h"
+
+
 
 UCLASS()
 class TRENCHCOATSGAME_API ARubyPistol : public AActor
@@ -15,25 +19,91 @@ public:
 	// Sets default values for this actor's properties
 	ARubyPistol();
 
+private: 
+
+	virtual void RemoveAmmo();
+	
+
+#pragma region AUDIO FUNCTIONS
+
+	virtual void PlayGunShotAudio();
+
+#pragma endregion
+
+
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
+	UWorld* World;
 
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 	
+#pragma region Booleans - related to tracking if gun has been picked up, and which hand it is in
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	bool pickedUp;
+		bool pickedUp;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	bool leftHand;
+		bool leftHand;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	bool rightHand;
+		bool rightHand;
 
+#pragma endregion
+
+#pragma region MESHES
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int ammoClip;
+		UStaticMeshComponent* pistolMesh;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		UStaticMeshComponent* firingMeshPos;
+#pragma endregion
 
+#pragma region VARIABLES FOR FINDING THE PLAYER PAWN, AND GETTING NAME OF CURRENT HAND THE GUN IS HOLDING
+	UPROPERTY(EditAnywhere)
+		APawn* playerPawn;
+	UPROPERTY(EditAnywhere)
+		class APlayerPawn* playerPawnClass;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		AActor* currentHand; //Finds the current hand, the pistol is currently being held by
+	UPROPERTY(EditAnywhere)
+		FString nameOfHand; //Takes ID of the current hand
+#pragma endregion
 
-	
+#pragma region AUDIO
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		USoundWave* pistolShotSound;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		USoundWave* pistolReloadSound;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		USoundWave* pistolClickSound;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		UAudioComponent* pistolAudioComponent;
+#pragma endregion
+
+#pragma region PISTOL STATS
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		int ammoClip;
+#pragma endregion
+
+#pragma region PISTOL FUNCTIONS
+	void FireLeft(); // function related to firing with the left hand
+	void FireRight();	//function related to firing with the right hand
+	void Reload();	//function related to reloading the gun
+#pragma endregion
+
+#pragma region GETTER FUNCTIONS
+	virtual bool GetPickedUp();
+	virtual int GetAmmoClip();
+	void ShootingRaycast();
+#pragma endregion
+
+#pragma region OTHER ACTORS
+
+	//Getting Enemy class
+	AEnemyTest* enemyClass;
+
+#pragma endregion
+
 };
