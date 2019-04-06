@@ -54,10 +54,14 @@ public:
 #pragma endregion
 
 #pragma region MESHES
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 		UStaticMeshComponent* pistolMesh;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 		UStaticMeshComponent* firingMeshPos;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UStaticMesh* pistol;
+	
+
 #pragma endregion
 
 #pragma region VARIABLES FOR FINDING THE PLAYER PAWN, AND GETTING NAME OF CURRENT HAND THE GUN IS HOLDING
@@ -80,6 +84,16 @@ public:
 		USoundWave* pistolClickSound;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		UAudioComponent* pistolAudioComponent;
+#pragma endregion
+
+
+#pragma region PARTICLE EFFECTS
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UParticleSystemComponent* pistolParticleSystem;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UParticleSystem* muzzleFlashParticle;
+
 #pragma endregion
 
 #pragma region PISTOL STATS

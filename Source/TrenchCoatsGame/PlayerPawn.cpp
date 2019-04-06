@@ -20,13 +20,14 @@ APlayerPawn::APlayerPawn()
 	camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	camera->SetupAttachment(vrOrigin);
 
-	DefaultCharacterHeight = 180.0f;
+	camera->bLockToHmd = true;
+
+	DefaultCharacterHeight = 160;
 	FadeOutDuration = 0.1f;
 	FadeInDuraction = 0.2f;
 
 	leftHand = false;
 	rightHand = false;
-
 
 	BaseEyeHeight = 180;
 }
@@ -60,10 +61,6 @@ void APlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	InputComponent->BindAction("Reload", IE_Pressed, this, &APlayerPawn::SendReloadMessage);
 	InputComponent->BindAction("FireLeft", IE_Pressed, this, &APlayerPawn::SendLeftFireMessage);
 	InputComponent->BindAction("FireRight", IE_Pressed, this, &APlayerPawn::SendRightFireMessage);
-
-	
-
-	
 }
 
 

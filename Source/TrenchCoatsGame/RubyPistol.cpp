@@ -19,13 +19,21 @@ ARubyPistol::ARubyPistol()
 	PrimaryActorTick.bCanEverTick = true;
 
 	pistolMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Pistol Mesh"));
-	firingMeshPos = CreateDefaultSubobject< UStaticMeshComponent>(TEXT("Front of Gun"));
+	firingMeshPos = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Front of Gun"));
 	firingMeshPos->SetupAttachment(pistolMesh);
 
-	firingMeshPos->SetRelativeLocation(FVector(3.0f, 0, 1.6f));
+	firingMeshPos->SetRelativeLocation(FVector(4.0f, 0, 1.6f));
+
+	//MESHES
+
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> pistolMeshObject(TEXT("StaticMesh'/Game/Assets/Models/Weapons/Ruby_Pistol/RubyPistolPlaceholder.RubyPistolPlaceholder'"));
+	pistol = pistolMeshObject.Object;
+
+	if (pistol) {
+		firingMeshPos->SetStaticMesh(pistol);
+	}
 
 	//AUDIO
-
 	static ConstructorHelpers::FObjectFinder<USoundWave> pistolShot(TEXT("SoundWave'/Game/Assets/Audio/Weapons/Pistol/gun_revolver_pistol_shot_04.gun_revolver_pistol_shot_04'"));
 	pistolShotSound = pistolShot.Object;
 
@@ -40,6 +48,17 @@ ARubyPistol::ARubyPistol()
 
 	if (pistolShotSound->IsValidLowLevelFast()) {
 		pistolAudioComponent->SetSound(pistolShotSound);
+	}
+
+	//Particle
+	static ConstructorHelpers::FObjectFinder<UParticleSystem> pistolFire(TEXT("ParticleSystem'/Game/StarterContent/Particles/P_MuzzleFlash.P_MuzzleFlash'"));
+	muzzleFlashParticle = pistolFire.Object;
+
+	pistolParticleSystem = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("PistolParticleSystem"));
+	pistolParticleSystem->bAutoActivate = false;
+
+	if (muzzleFlashParticle->IsValidLowLevelFast()) {
+		pistolParticleSystem->SetTemplate(muzzleFlashParticle);
 	}
 
 	World = GetWorld();
@@ -119,6 +138,7 @@ void ARubyPistol::FireRight() {
 				ShootingRaycast();
 				PlayGunShotAudio();
 				RemoveAmmo();
+
 			}
 			else if (ammoClip == 0) {
 				if (pistolClickSound->IsValidLowLevelFast()) {
