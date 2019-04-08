@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Engine.h"
 #include "RubyPistol.h"
+#include "MedicBag.h"
 #include "IXRSystemAssets.h"
 #include "IXRTrackingSystem.h"
 #include "HeadMountedDisplay.h"
@@ -50,6 +51,8 @@ public:
 	void SendReloadMessage();
 	void SendLeftFireMessage();
 	void SendRightFireMessage();
+	void HealPlayer(float healAmount);
+
 
 	UFUNCTION()
 	virtual bool GetPistol();
@@ -57,7 +60,7 @@ public:
 	UFUNCTION()
 	FName GetHMDDeviceName();
 
-	
+	void SetMedicBag(class AMedicBag* medic);
 
 
 	//Functions Related to Player Health
@@ -92,8 +95,10 @@ public:
 	//ints
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 		int PistolAmmo;
-	UPROPERTY(VisibleAnywhere)
-		int playerHealth;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+		float currentPlayerHealth;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+		float fullPlayerHealth;
 
 	//Bools
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
@@ -104,8 +109,7 @@ public:
 		bool LeftStickDown;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 		bool UseControllerRollToRotate;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		bool pistol;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		bool leftHand;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -117,7 +121,19 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	class ARubyPistol* rubyPistol;
+	UPROPERTY(EditAnywhere)
+		class AMedicBag* medicBag;
 
+	//Pick up Objects
 
+	//Weapons
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+		bool pistolPickedUp;
+
+	//Other Items
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+		bool medicBagPickedUp;
+
+	
 
 };

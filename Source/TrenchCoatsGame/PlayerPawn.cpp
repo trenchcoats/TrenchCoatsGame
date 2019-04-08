@@ -29,6 +29,9 @@ APlayerPawn::APlayerPawn()
 	leftHand = false;
 	rightHand = false;
 
+	currentPlayerHealth = 100;
+	fullPlayerHealth = 100;
+
 	BaseEyeHeight = 180;
 }
 
@@ -61,6 +64,7 @@ void APlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	InputComponent->BindAction("Reload", IE_Pressed, this, &APlayerPawn::SendReloadMessage);
 	InputComponent->BindAction("FireLeft", IE_Pressed, this, &APlayerPawn::SendLeftFireMessage);
 	InputComponent->BindAction("FireRight", IE_Pressed, this, &APlayerPawn::SendRightFireMessage);
+
 }
 
 
@@ -68,25 +72,48 @@ void APlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 //SEND MESSAGE FUNCTIONS
 
 void APlayerPawn::SendReloadMessage() {
-	GEngine->AddOnScreenDebugMessage(-1, 0.5f, FColor::Yellow, TEXT("HELLO WORLD"));
-	rubyPistol->Reload();
+	if (pistolPickedUp) {
+		GEngine->AddOnScreenDebugMessage(-1, 0.5f, FColor::Yellow, TEXT("HELLO WORLD"));
+		rubyPistol->Reload();
+	}
+	
+	if (medicBagPickedUp) {
+		medicBag->DestroyThis();
+	}
 }
 
 void APlayerPawn::SendLeftFireMessage() {
-	GEngine->AddOnScreenDebugMessage(-1, 0.5f, FColor::Yellow, TEXT("HELLO WORLD"));
-	leftHand = true;
-	rubyPistol->FireLeft();
+	if (pistolPickedUp) {
+		GEngine->AddOnScreenDebugMessage(-1, 0.5f, FColor::Yellow, TEXT("HELLO WORLD"));
+		leftHand = true;
+		rubyPistol->FireLeft();
+	}
 }
 
 void APlayerPawn::SendRightFireMessage() {
-	GEngine->AddOnScreenDebugMessage(-1, 0.5f, FColor::Yellow, TEXT("HELLO WORLD"));
-	rubyPistol->FireRight();
+	if (pistolPickedUp) {
+		GEngine->AddOnScreenDebugMessage(-1, 0.5f, FColor::Yellow, TEXT("HELLO WORLD"));
+		rubyPistol->FireRight();
+	}
 }
+
+
+//PLAYERS STATS
+
+void APlayerPawn::HealPlayer(float healAmount) {
+	currentPlayerHealth = currentPlayerHealth + healAmount;
+
+
+
+}
+
+
+
 
 //GET FUNCTIONS
 
 bool APlayerPawn::GetPistol() {
-	return pistol;
+	return pistolPickedUp;
 }
 
 FName APlayerPawn::GetHMDDeviceName() {
@@ -111,6 +138,11 @@ bool APlayerPawn::GetRightHand() {
 	return rightHand;
 }
 
+//SETTER FUNCTIONS
+
+void APlayerPawn::SetMedicBag(class AMedicBag* medic) {
+	medicBag = medic;
+}
 
 
 
