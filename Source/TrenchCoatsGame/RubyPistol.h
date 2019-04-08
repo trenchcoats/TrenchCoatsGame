@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "PlayerPawn.h"
-#include "EnemyTest.h"
+#include "GermanMedicV2.h"
 #include "GameFramework/Actor.h"
 #include "RubyPistol.generated.h"
 
@@ -116,7 +116,8 @@ public:
 #pragma region OTHER ACTORS
 
 	//Getting Enemy class
-	AEnemyTest* enemyClass;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	class AGermanMedicV2* enemyClass;
 
 #pragma endregion
 

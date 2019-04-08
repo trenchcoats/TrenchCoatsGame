@@ -166,7 +166,9 @@ void ARubyPistol::ShootingRaycast() {
 		{
 			DrawDebugLine(GetWorld(), startingPos, endPos, FColor(255, 0, 0), true);
 
-			enemyClass = Cast<AEnemyTest>(hitResult->GetActor());
+			ACharacter* actorHit = Cast<ACharacter>(hitResult->GetActor());
+
+			enemyClass = Cast<AGermanMedicV2>(actorHit);
 
 			if (enemyClass) {
 				enemyClass->TakeDamage(20);
