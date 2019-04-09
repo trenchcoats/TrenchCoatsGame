@@ -29,7 +29,7 @@ APlayerPawn::APlayerPawn()
 	leftHand = false;
 	rightHand = false;
 
-	currentPlayerHealth = 100;
+	currentPlayerHealth = 70;
 	fullPlayerHealth = 100;
 
 	BaseEyeHeight = 180;
@@ -102,12 +102,7 @@ void APlayerPawn::SendRightFireMessage() {
 
 void APlayerPawn::HealPlayer(float healAmount) {
 	currentPlayerHealth = currentPlayerHealth + healAmount;
-
-
-
 }
-
-
 
 
 //GET FUNCTIONS
