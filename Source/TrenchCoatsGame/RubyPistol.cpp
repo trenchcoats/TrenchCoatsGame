@@ -168,7 +168,7 @@ void ARubyPistol::ShootingRaycast() {
 
 			ACharacter* actorHit = Cast<ACharacter>(hitResult->GetActor());
 
-			enemyClass = Cast<AGermanMedicV2>(actorHit);
+			enemyClass = Cast<AGermanSoldier>(actorHit);
 
 			if (enemyClass) {
 				enemyClass->TakeDamage(20);
