@@ -93,10 +93,6 @@ void ARubyPistol::Tick(float DeltaTime)
 		nameOfHand = *currentHand->GetActorLabel();
 	}
 
-	if (GEngine) {
-		GEngine->AddOnScreenDebugMessage(-1, 0.5f, FColor::Yellow, FString::FromInt(ammoClip));
-	}
-
 	Super::Tick(DeltaTime);	
 }
 

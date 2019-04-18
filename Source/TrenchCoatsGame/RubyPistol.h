@@ -114,12 +114,12 @@ public:
 	void ShootingRaycast();
 #pragma endregion
 
+
 #pragma region OTHER ACTORS
 
 	//Getting Enemy class
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	class AGermanSoldier* enemyClass;
+		class AGermanSoldier* enemyClass;
 
 #pragma endregion
-
 };

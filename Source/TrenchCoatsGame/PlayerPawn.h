@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Engine.h"
 #include "RubyPistol.h"
+#include "FrenchRifle.h"
 #include "MedicBag.h"
 #include "IXRSystemAssets.h"
 #include "IXRTrackingSystem.h"
@@ -96,6 +97,8 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 		int PistolAmmo;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+		int RifleAmmo;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 		float currentPlayerHealth;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 		float fullPlayerHealth;
@@ -122,13 +125,18 @@ public:
 	UPROPERTY(EditAnywhere)
 	class ARubyPistol* rubyPistol;
 	UPROPERTY(EditAnywhere)
-		class AMedicBag* medicBag;
+	class AFrenchRifle* frenchRifle;
+	UPROPERTY(EditAnywhere)
+	class AMedicBag* medicBag;
 
 	//Pick up Objects
 
 	//Weapons
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 		bool pistolPickedUp;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+		bool riflePickedUp;
+
 
 	//Other Items
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)

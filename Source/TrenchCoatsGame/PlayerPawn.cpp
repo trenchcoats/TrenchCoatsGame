@@ -46,6 +46,10 @@ void APlayerPawn::BeginPlay()
 		rubyPistol = *ActorItr;
 	}
 
+	for (TActorIterator<AFrenchRifle> ActorItr(GetWorld()); ActorItr; ++ActorItr) {
+		frenchRifle = *ActorItr;
+	}
+
 	
 }
 
@@ -76,6 +80,11 @@ void APlayerPawn::SendReloadMessage() {
 		GEngine->AddOnScreenDebugMessage(-1, 0.5f, FColor::Yellow, TEXT("HELLO WORLD"));
 		rubyPistol->Reload();
 	}
+
+	if (riflePickedUp) {
+		GEngine->AddOnScreenDebugMessage(-1, 0.5f, FColor::Yellow, TEXT("HELLO WORLD"));
+		frenchRifle->Reload();
+	}
 	
 	if (medicBagPickedUp) {
 		medicBag->DestroyThis();
@@ -88,6 +97,13 @@ void APlayerPawn::SendLeftFireMessage() {
 		leftHand = true;
 		rubyPistol->FireLeft();
 	}
+
+	if (riflePickedUp) {
+		GEngine->AddOnScreenDebugMessage(-1, 0.5f, FColor::Yellow, TEXT("HELLO WORLD"));
+		leftHand = true;
+		frenchRifle->FireLeft();
+	}
+
 }
 
 void APlayerPawn::SendRightFireMessage() {
@@ -95,6 +111,12 @@ void APlayerPawn::SendRightFireMessage() {
 		GEngine->AddOnScreenDebugMessage(-1, 0.5f, FColor::Yellow, TEXT("HELLO WORLD"));
 		rubyPistol->FireRight();
 	}
+
+	if (riflePickedUp) {
+		GEngine->AddOnScreenDebugMessage(-1, 0.5f, FColor::Yellow, TEXT("HELLO WORLD"));
+		frenchRifle->FireRight();
+	}
+
 }
 
 
