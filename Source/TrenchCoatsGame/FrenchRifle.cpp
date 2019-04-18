@@ -29,10 +29,10 @@ AFrenchRifle::AFrenchRifle()
 #pragma endregion
 
 #pragma region SETTING UP THE AUDIO
-	static ConstructorHelpers::FObjectFinder<USoundWave> rifleShot(TEXT("SoundWave'/Game/Assets/Audio/Weapons/Pistol/gun_revolver_pistol_shot_04.gun_revolver_pistol_shot_04'"));
+	static ConstructorHelpers::FObjectFinder<USoundWave> rifleShot(TEXT("SoundWave'/Game/Assets/Audio/Weapons/Rifle/BOLRIF.BOLRIF'"));
 	rifleShotSound = rifleShot.Object;
 
-	static ConstructorHelpers::FObjectFinder<USoundWave> rifleReload(TEXT("SoundWave'/Game/Assets/Audio/Weapons/Pistol/396331__nioczkus__1911-reload.396331__nioczkus__1911-reload'"));
+	static ConstructorHelpers::FObjectFinder<USoundWave> rifleReload(TEXT("SoundWave'/Game/Assets/Audio/Weapons/Rifle/BOLT.BOLT'"));
 	rifleReloadSound = rifleReload.Object;
 
 	static ConstructorHelpers::FObjectFinder<USoundWave> rifleClick(TEXT("SoundWave'/Game/Assets/Audio/Weapons/Pistol/Pistol_Hammer_Cock_02.Pistol_Hammer_Cock_02'"));
