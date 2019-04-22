@@ -21,9 +21,9 @@ void AGermanMedicV2::BeginPlay()
 // Called every frame
 void AGermanMedicV2::Tick(float DeltaTime)
 {
-	if (health <= 0) {
-		Destroy(this);
-	}
+	//if (health <= 0) {
+	//	Destroy(this);
+	//}
 	Super::Tick(DeltaTime);
 
 }

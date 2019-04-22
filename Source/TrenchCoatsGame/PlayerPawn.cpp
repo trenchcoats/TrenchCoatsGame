@@ -76,17 +76,18 @@ void APlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 //SEND MESSAGE FUNCTIONS
 
 void APlayerPawn::SendReloadMessage() {
-	if (pistolPickedUp) {
-		GEngine->AddOnScreenDebugMessage(-1, 0.5f, FColor::Yellow, TEXT("HELLO WORLD"));
-		rubyPistol->Reload();
-	}
+	//if (pistolPickedUp) {
+	//	GEngine->AddOnScreenDebugMessage(-1, 0.5f, FColor::Yellow, TEXT("HELLO WORLD"));
+	//	rubyPistol->Reload();
+	//}
 
-	if (riflePickedUp) {
-		GEngine->AddOnScreenDebugMessage(-1, 0.5f, FColor::Yellow, TEXT("HELLO WORLD"));
-		frenchRifle->Reload();
-	}
+	//if (riflePickedUp) {
+	//	GEngine->AddOnScreenDebugMessage(-1, 0.5f, FColor::Yellow, TEXT("HELLO WORLD"));
+	//	frenchRifle->Reload();
+	//}
 	
 	if (medicBagPickedUp) {
+		HealPlayer(20);
 		medicBag->DestroyThis();
 	}
 }

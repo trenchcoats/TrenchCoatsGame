@@ -103,6 +103,7 @@ public:
 #pragma region RIFLE FUNCTIONS
 	void FireLeft(); // function related to firing with the left hand
 	void FireRight();	//function related to firing with the right hand
+	UFUNCTION(BlueprintCallable)
 	void Reload();	//function related to reloading the gun
 #pragma endregion
 
@@ -118,7 +119,9 @@ public:
 
 	//Getting Enemy class
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		class AGermanSoldier* enemyClass;
+		class AGermanSoldier* enemySoldier;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		class AGermanMedicV2* enemyMedic;
 
 #pragma endregion
 };

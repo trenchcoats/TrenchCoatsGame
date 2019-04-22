@@ -161,10 +161,15 @@ void AFrenchRifle::ShootingRaycast() {
 
 		ACharacter* actorHit = Cast<ACharacter>(hitResult->GetActor());
 
-		enemyClass = Cast<AGermanSoldier>(actorHit);
+		enemySoldier = Cast<AGermanSoldier>(actorHit);
+		enemyMedic = Cast<AGermanMedicV2>(actorHit);
 
-		if (enemyClass) {
-			enemyClass->TakeDamage(20);
+		if (enemySoldier) {
+			enemySoldier->TakeDamage(20);
+		}
+
+		if (enemyMedic) {
+			enemyMedic->TakeDamage(20);
 		}
 	}
 }

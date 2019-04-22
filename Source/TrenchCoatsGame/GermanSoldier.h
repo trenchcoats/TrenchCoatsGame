@@ -28,7 +28,7 @@ public:
 
 	void TakeDamage(int damage);
 
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 		int health;
 
 	
